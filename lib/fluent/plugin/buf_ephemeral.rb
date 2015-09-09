@@ -2,25 +2,42 @@ module Fluent
   class EphemeralBuffer < MemoryBuffer
     Fluent::Plugin.register_buffer('ephemeral', self)
 
-    config_param :buffer_log_level, :string, :default => 'info'
+    def initialize
+      super
+
+      @log = $log
+    end
+
+    config_param :buffer_log_level, :default => nil
+    # to set log_level of the output plugin and this plugin at once
+    config_param :log_level, :defualt => nil
+
 
     def configure(conf)
       super
 
-      begin
-        Fluent::Log.str_to_level(@buffer_log_level)
-      rescue
-        raise ConfigError "Invalid buffer log level '#{@buffer_lg_level}'"
+      if @buffer_log_level
+        set_log_level(@buffer_log_level)
+      elsif @log_level
+        set_log_level(@log_level)
       end
 
-      $log.warn "If failed to write a chunk once, it will be lost."
+      @log.warn "If failed to write a chunk once, it will be lost."
     end
     
     def write_chunk(chunk, out)
       super
     rescue => e
-      $log.send(@buffer_log_level, "failed to write the chunk", chunk_key: chunk.key)
-      $log.send("#{@buffer_log_level}_backtrace", e.backtrace)
+      @log.info("failed to write the chunk", chunk_key: chunk.key)
+      @log.info_backtrace(e.backtrace)
+    end
+
+    private
+    def set_log_level(log_level)
+      unless @log.is_a?(Fluent::PluginLogger)
+        @log = Fluent::PluginLogger.new($log)
+      end
+      @log.level = log_level
     end
   end
 end
