@@ -27,7 +27,7 @@ module Fluent
     def write_chunk(chunk, out)
       super
     rescue => e
-      @log.info("failed to write the chunk", chunk_key: chunk.key)
+      @log.info("failed to write the chunk", :error_class=>e.class.to_s, :error=>e.to_s, chunk_key: chunk.key, :plugin_id=>out.plugin_id)
       @log.info_backtrace(e.backtrace)
     end
 
