@@ -10,8 +10,7 @@ module Fluent
 
     config_param :buffer_log_level, :default => nil
     # to set log_level of the output plugin and this plugin at once
-    config_param :log_level, :defualt => nil
-
+    config_param :log_level, :default => nil
 
     def configure(conf)
       super
