@@ -3,7 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |spec|
   spec.name          = "fluent-plugin-buffer-ephemeral"
-  spec.version       = "0.1.0"
+  spec.version       = "0.0.1"
   spec.authors       = ["Yuki Ito"]
   spec.email         = ["yuki@gnnk.net"]
 
