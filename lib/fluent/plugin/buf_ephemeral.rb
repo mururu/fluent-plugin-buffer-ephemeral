@@ -1,3 +1,5 @@
+require 'fluent/plugin/buf_memory'
+
 module Fluent
   class EphemeralBuffer < MemoryBuffer
     Fluent::Plugin.register_buffer('ephemeral', self)
