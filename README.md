@@ -1,5 +1,7 @@
 # fluent-plugin-buffer-ephemeral
 
+[![Build Status](https://secure.travis-ci.org/mururu/fluent-plugin-buffer-ephemeral.png?branch=master)](http://travis-ci.org/mururu/fluent-plugin-buffer-ephemeral)
+
 Fluentd memory buffer plugin to disable retry and suppress warnings on failure of output.
 
 ## Installation
