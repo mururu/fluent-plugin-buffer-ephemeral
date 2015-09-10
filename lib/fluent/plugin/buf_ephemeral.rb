@@ -23,13 +23,13 @@ module Fluent
         set_log_level(@log_level)
       end
 
-      @log.warn "If failed to write a chunk once, it will be lost."
+      @log.warn("If failed to write a chunk once, it will be lost.")
     end
     
     def write_chunk(chunk, out)
       super
     rescue => e
-      @log.info("failed to write the chunk", :error_class=>e.class.to_s, :error=>e.to_s, chunk_key: chunk.key, :plugin_id=>out.plugin_id)
+      @log.info("failed to write the chunk", error_class: e.class.to_s, error: e.to_s, chunk_key: chunk.key, plugin_id: out.plugin_id)
       @log.info_backtrace(e.backtrace)
     end
 
