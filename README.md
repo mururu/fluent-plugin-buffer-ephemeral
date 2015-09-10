@@ -27,6 +27,8 @@ $ td-agent-gem install fluent-plugin-buffer-ephemeral
 </match>
 ```
 
+If you want to suppress warnings on failure of output, you should set `(buffer_)log_level` as warn or over.
+
 Options of memory buffer are available.
 
 ## License
