@@ -7,7 +7,7 @@ Fluentd memory buffer plugin to disable retry and suppress warnings on failure o
 ## Installation
 
 ```
-$ fluent-gem install 'fluent-plugin-buffer-ephemeral'
+$ fluent-gem install fluent-plugin-buffer-ephemeral
 ```
 
 or
